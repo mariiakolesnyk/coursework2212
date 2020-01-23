@@ -1,0 +1,36 @@
+{% extends "index.html" %}
+
+{% block content %}
+
+
+<div class="table-responsive">
+    <table class="table">
+        <thread class="thead-dark">
+            <tr>
+                <th scope="col">List</th>
+                <th scope="col">Name</th>
+
+            </tr>
+            {% for item in result %}
+            <tr>
+                <td scope="row">{{ item.participant_list }}</td>
+                <td scope="row">{{ item.participant_name }}</td>
+
+                <td>
+                    <a href="/edit_participant/{{item.participant_list}}" type="button" class="btn btn-warning">Edit</a>
+                    {% if current_user.has_role('Admin') %}
+                    <a href="/delete_participant/{{item.participant_list}}" type="button"
+                       class="btn btn-danger">Delete</a>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </thread>
+    </table>
+
+    <td><a href="/create_participant" type="button" class="btn btn-success">New participant</a></td>
+
+</div>
+
+{% endblock %}
+

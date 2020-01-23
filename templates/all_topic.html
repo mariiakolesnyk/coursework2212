@@ -1,0 +1,35 @@
+
+{% extends "index.html" %}
+
+{% block content %}
+
+
+
+ <div class="table-responsive">
+        <table class="table">
+            <thread class = "thead-dark">
+            <tr>
+                <th scope="col">Name</th>
+             </tr>
+            {% for item in result %}
+            <tr>
+                <td scope="row"><a href="/all/{{ item.topic_name }}" >{{ item.topic_name }}</a></td>
+                <td>
+<!--                    <a href="/edit_topic/{{item.topic_name}}" type="button" class="btn btn-warning">Edit</a>-->
+                    {% if current_user.has_role('Admin') %}
+                    <a href="/delete_topic/{{item.topic_name}}" type="button" class="btn btn-danger">Delete</a>
+                    {% endif %}
+                    <a href="/clustering/{{item.topic_name}}" type="button" class="btn btn-success">Clasteresation</a>
+                </td>
+             </tr>
+            {% endfor %}
+            </thread>
+        </table>
+
+    <td><a href="/create_topic" type="button" class="btn btn-success">New topic</a> </td>
+
+</div>
+
+{% endblock %}
+
+

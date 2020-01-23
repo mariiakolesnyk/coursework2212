@@ -1,0 +1,40 @@
+
+{% extends "index.html" %}
+
+{% block content %}
+
+
+
+ <div class="table-responsive">
+        <table class="table">
+            <thread class = "thead-dark">
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Date</th>
+             </tr>
+            {% for item in result %}
+            <tr>
+                <td scope="row">{{ item.presentation_name }}</td>
+                <td scope="row">{{ item.presentation_date }}</td>
+
+                <td>
+                    <a href="/edit_presentation/{{item.presentation_name}}" type="button" class="btn btn-warning">Edit</a>
+                    {% if item.presentation_link != None %}
+                    <a href="{{item.presentation_link}}" type="button" class="btn btn-success">Download</a>
+                    {% endif %}
+                    {% if current_user.has_role('Admin') %}
+                    <a href="/delete_presentation/{{item.presentation_name}}" type="button" class="btn btn-danger">Delete</a>
+                    {% endif %}
+                </td>
+             </tr>
+            {% endfor %}
+            </thread>
+        </table>
+
+    <td> <a href="/create_presentation" type="button" class="btn btn-success">New presentation</a> </td>
+
+</div>
+
+{% endblock %}
+
+

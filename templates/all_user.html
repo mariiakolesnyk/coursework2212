@@ -1,0 +1,42 @@
+
+{% extends "index.html" %}
+
+{% block content %}
+
+
+
+ <div class="table-responsive">
+        <table class="table">
+            <thread class = "thead-dark">
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Phone</th>
+                <th scope="col">Birthday</th>
+
+             </tr>
+            {% for item in result %}
+            <tr>
+                <td scope="row">{{ item.user_name }}</td>
+                <td scope="row">{{ item.user_email }}</td>
+                <td scope="row">{{ item.user_phone }}</td>
+                <td scope="row">{{ item.user_birthday }}</td>
+                <td>
+                    <a href="/edit_user/{{item.user_email}}" type="button" class="btn btn-warning">Edit</a>
+                    {% if current_user.has_role('Admin') %}
+                    <a href="/delete_user/{{item.user_email}}" type="button" class="btn btn-danger">Delete</a>
+                    {% endif %}
+                </td>
+             </tr>
+            {% endfor %}
+            </thread>
+        </table>
+
+{#    <td> <a href="/create_user" type="button" class="btn btn-success">New user</a> </td>#}
+
+
+</div>
+
+{% endblock %}
+
+
